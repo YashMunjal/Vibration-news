@@ -25,6 +25,6 @@ List<CardModel> cards = cardData
     .toList();
 
 var cardData = [
-  {"name": "Yash", "balance": "20,000", "valid": "06/25","bgColor":yCardOneColor,"fColor":yGreyColor,"sColor":yBlackColor},
+  {"name": "Yash", "balance": "20,000", "valid": "06/25","bgColor":yCardOneColor,"fColor":yWhiteColor,"sColor":yWGreyColor},
   {"name": "Himanshu", "balance": "20,000", "valid": "06/25","bgColor":yCardTwoColor,"fColor":yWhiteColor,"sColor":yWhiteColor}
 ];

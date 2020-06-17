@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vibrateNewsUi/screens/home_screen.dart';
+import 'package:vibrateNewsUi/colors.dart';
 void main() {
   runApp(MyApp());
 }
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         accentColor:Color(0xff03A5E1),
-        backgroundColor: Color(0xffF6F6F6)
+        backgroundColor: yWhiteColor
       ),
       home: HomeScreen(),
     );
