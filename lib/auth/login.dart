@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:vibrateNewsUi/auth/signup.dart';
+import 'package:vibrateNewsUi/screens/home.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -175,23 +176,28 @@ class _LoginState extends State<Login> {
                   ),
                   SizedBox(height: height*0.03),
                   Center(
-                    child: Container(
-                      height: height*0.06,
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.amber,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+                      },
+                      child: Container(
+                        height: height*0.06,
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Colors.amber,
+                          ),
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(15),
                         ),
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left:15,right: 15,top: 12,bottom: 12),
-                        child: Text(
-                          'LOG IN',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.grey,
-                            fontSize: 20
+                        child: Padding(
+                          padding: const EdgeInsets.only(left:15,right: 15,top: 12,bottom: 12),
+                          child: Text(
+                            'LOG IN',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                              fontSize: 20
+                            ),
                           ),
                         ),
                       ),
