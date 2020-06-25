@@ -14,6 +14,7 @@ class _SignupState extends State<Signup> {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         child: Stack(
           children: [
@@ -32,7 +33,7 @@ class _SignupState extends State<Signup> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 75),
+              padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 70),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

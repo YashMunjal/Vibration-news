@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:vibrateNewsUi/providers/news_provider.dart';
+import 'package:vibrateNewsUi/screens/news_card.dart';
 
 import 'news_screen.dart';
+
+NewsProvider obj =NewsProvider();
 
 class News extends StatefulWidget {
   @override
@@ -10,107 +14,86 @@ class News extends StatefulWidget {
 class _NewsState extends State<News> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Column(
-        children: [
-          Flexible(
-            child: ListView.builder(
-              itemCount: 5,
-              itemBuilder: (context, index) {
-                return GestureDetector(
-                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsScreen())),
-                  child: newsCard()
-                );
-              },
-            )
-          )
-        ],
-      ),
-    );
-  }
-  Widget newsCard(){
-    return Padding(
-      padding: const EdgeInsets.only(bottom:16.0),
-      child: Card(
-        elevation: 6,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15)
-        ),
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Card(
-                    elevation: 5,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(15)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(15.0),
-                      child: Image.asset(
-                        'assets/logo/logo.png',
-                        height: 50,
-                      ),
-                    )
-                  ),
-                  Container(
-                    width: MediaQuery.of(context).size.width*0.45,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'News Headline',
-                          style: TextStyle(
-                            fontSize: 22
-                          ),
-                        ),
-                        Text(
-                          'Headline'
-                        ),
-                        Text(
-                          'Headline'
-                        )
-                      ],
-                    ),
-                  ),
-                  Container(
-                    width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.amber.withOpacity(0.5)
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Icon(
-                        Icons.arrow_forward_ios,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-              Column(
-                children: [
-                  Text(
-                    'sdgtssrmtymt,g,h.h.'
-                  ),
-                  Text(
-                    'sdgtssrmtymt,g,h.h.'
-                  ),
-                  Text(
-                    'sdgtssrmtymt,g,h.h.'
-                  )
-                ],
-              )
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent.withOpacity(0),
+        elevation: 0,
+        leading: Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Container(
+            height: 30,width: 30,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0,3),
+                  color: Colors.amber[200],
+                  blurRadius: 8
+                )
+              ]
+            ),
+            child: Icon(
+              Icons.volume_up,
+              color: Colors.black,
+            ),
           ),
         ),
+        actions: [
+          Padding(
+          padding: const EdgeInsets.all(5.0),
+          child: Container(
+            height: 30,width: 45,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(12),
+              boxShadow: [
+                BoxShadow(
+                  offset: Offset(0,3),
+                  color: Colors.amber[100],
+                  blurRadius: 5
+                )
+              ]
+            ),
+            child: Icon(
+              Icons.vibration,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        ],
       ),
-                );
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+        child: Column(
+          children: [
+            Flexible(
+              child: FutureBuilder(
+                future: obj.getNews(),
+                builder: (context, snapshot) {
+                  if (snapshot == null || snapshot.connectionState == ConnectionState.waiting || snapshot.connectionState == ConnectionState.none){
+                        // if(!snapshot.data || snapshot.connectionState!=ConnectionState.done){
+                        //   print(snapshot.data);
+                    return Center(child: Container(
+                      width: 20,height: 20,
+                      child: CircularProgressIndicator()));
+                  }else {
+                    return ListView.builder(
+                      itemCount: snapshot.data.newsp.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context)=>NewsScreen())),
+                          child: NewsCard()
+                        );
+                      },
+                    );
+                  }
+                },
+              )
+            )
+          ],
+        ),
+      ),
+    );
   }
 }
