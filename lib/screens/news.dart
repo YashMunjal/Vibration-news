@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:vibrateNewsUi/providers/news_provider.dart';
 import 'package:vibrateNewsUi/screens/news_card.dart';
+import 'package:vibrateNewsUi/vibrationClass.dart';
+import 'package:vibration/vibration.dart';
 
 import 'news_screen.dart';
 
@@ -42,22 +44,27 @@ class _NewsState extends State<News> {
         actions: [
           Padding(
           padding: const EdgeInsets.all(5.0),
-          child: Container(
-            height: 30,width: 45,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              boxShadow: [
-                BoxShadow(
-                  offset: Offset(0,3),
-                  color: Colors.amber[100],
-                  blurRadius: 5
-                )
-              ]
-            ),
-            child: Icon(
-              Icons.vibration,
-              color: Colors.black,
+          child: GestureDetector(
+            onTap: () {
+              
+            },
+            child: Container(
+              height: 30,width: 45,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(0,3),
+                    color: Colors.amber[100],
+                    blurRadius: 5
+                  )
+                ]
+              ),
+              child: Icon(
+                Icons.vibration,
+                color: Colors.black,
+              ),
             ),
           ),
         ),

@@ -22,13 +22,17 @@ class NewsProvider{
   }
 
   Future getNews() async {
-    const url='https://newsapi.org/v2/top-headlines?q=covid-19&country=in&apiKey=9cbb77acb25d415ebb8514748e087b08';
+    const url='https://covid-19-news.p.rapidapi.com/v1/covid?topic=news&lang=en&country=in&q=covid';
     http.Response response = await http.get(
       url,
-      headers: {"Accept": "application/json"}
-      );
-    
+      headers: {
+        "x-rapidapi-host": "covid-19-news.p.rapidapi.com",
+        "x-rapidapi-key": "cf896b5fc3msh83f30858d5860b3p1dff08jsn670351237bec"
+      }
+    );
+    print(response.body);
     var x=NewsProvider.fromJson(json.decode(response.body));
+    print(response.body);
     return x;
   }
 }

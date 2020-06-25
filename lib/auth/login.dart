@@ -8,8 +8,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-  TextEditingController emailcontroller=TextEditingController();
-  TextEditingController passwordcontroller=TextEditingController();
+  TextEditingController emailcontroller =TextEditingController();
+  TextEditingController passwordcontroller =TextEditingController();
 
   @override
   Widget build(BuildContext context) {
